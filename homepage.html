@@ -7,7 +7,22 @@
 	</head>
 	<body>
 		
+            
+        <li>
   <a href="https://www.google.com">Google</a>
+        </li>
+        <li>
   <a href="https://www.github.com">Github</a>
+        </li>
+        <li>
+            <input id="urlInput"/>
+            <button onclick="visit()">Go</button>
+        </li>
+        <script>
+            function visit() {
+                var urlInput = document.getElementById("urlInput")
+                window.location = "https://" + urlInput.value
+            }
+        </script>
 	</body>
 </html>
