@@ -2,26 +2,56 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>Home</title>
+        <style>
+            small {
+                display: block;
+                font-size: 0.7em;
+            }
+
+            li {
+                margin-bottom: 5px;
+            }
+        </style>
 	</head>
 	<body>
 		
             
+        <ul id="theUl">
         <li>
-  <a href="https://www.google.com">Google</a>
+            <div>
+                <a href="https://www.google.com">Google</a>
+                <small>www.google.com</small>
+            </div>
         </li>
         <li>
-  <a href="https://www.github.com">Github</a>
+            <a href="https://www.github.com">Github</a>
         </li>
         <li>
             <input id="urlInput"/>
             <button onclick="visit()">Go</button>
         </li>
+        </ul>
         <script>
+            var theUl = document.getElementById("theUl")
+            
             function visit() {
                 var urlInput = document.getElementById("urlInput")
                 window.location = "https://" + urlInput.value
+            }
+
+            function addItem(url, host, title) {
+                var div = document.createElement("div")
+                var a = document.createElement("a")
+                var small = document.createElement("small")
+                small.innerText = host
+                a.innerText = title
+                a.setAttribute("href", url)
+                div.appendChild(a)
+                div.appendChild(small)
+
+                theUl.appendChild(div)
             }
         </script>
 	</body>
