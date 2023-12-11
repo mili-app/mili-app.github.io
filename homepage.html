@@ -5,6 +5,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>Home</title>
         <style>
+            body {
+                background-color: Canvas;
+                color: CanvasText;
+                color-scheme: light dark;
+            }
+
             small {
                 display: block;
                 font-size: 0.7em;
@@ -12,6 +18,10 @@
 
             li {
                 margin-bottom: 5px;
+            }
+            
+            a {
+                color: AccentColor;
             }
         </style>
 	</head>
@@ -26,13 +36,13 @@
             </div>
         </li>
         <li>
-            <a href="https://www.github.com">Github</a>
-        </li>
-        <li>
             <input id="urlInput"/>
             <button onclick="visit()">Go</button>
         </li>
         </ul>
+        <footer>
+            v1.0
+        </footer>
         <script>
             var theUl = document.getElementById("theUl")
             
