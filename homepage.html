@@ -29,12 +29,16 @@
 	<body>
         <ul id="theUl">
         <li>
+            <input id="urlInput"/>
+            <button onclick="visit()">Go</button>
+        </li>
+        <li>
             <a href="https://www.google.com">Google</a>
             <small>www.google.com</small>
         </li>
         <li>
-            <input id="urlInput"/>
-            <button onclick="visit()">Go</button>
+            <input id="searchInput"/>
+            <button onclick="search()">Search</button>
         </li>
         </ul>
         <footer>
@@ -45,7 +49,18 @@
             
             function visit() {
                 var urlInput = document.getElementById("urlInput")
-                window.location = "https://" + urlInput.value
+                var url = urlInput.value
+                if (url.startsWith('http://') || url.startsWith('https://')) {
+                    window.location = url
+                } else {
+                    window.location = "https://" + url
+                }
+            }
+
+            function search() {
+                var urlInput = document.getElementById("searchInput")
+                var url = urlInput.value
+                window.location = "https://www.google.com/search?q=" + encodeURI(url)
             }
 
             function addItem(url, host, title) {
