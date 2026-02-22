@@ -1,1 +1,451 @@
-<h1>Hello, Github.io</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>推荐网站</title>
+    <style>
+        /* 全局重置，使用系统字体，保证移动端清晰 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: #f5f7fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 16px 12px 32px;
+            /* 提高可读性，加大行距 */
+            line-height: 1.5;
+        }
+
+        /* 主容器，最大宽度保证在大屏手机上也舒适 */
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* 页面主标题 */
+        .page-title {
+            font-size: 2rem;          /* 约32px */
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin: 0 0 8px 4px;
+            color: #1e293b;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .page-title span {
+            background: #3b82f6;
+            color: white;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 4px 12px;
+            border-radius: 40px;
+            letter-spacing: normal;
+        }
+
+        /* 分类区块 */
+        .section {
+            margin-bottom: 28px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: baseline;
+            margin: 0 0 12px 4px;
+        }
+        .section-header h2 {
+            font-size: 1.7rem;         /* 约27px */
+            font-weight: 600;
+            color: #334155;
+            letter-spacing: -0.01em;
+            border-left: 8px solid #3b82f6;
+            padding-left: 16px;
+            line-height: 1.3;
+        }
+        .section-header .badge {
+            margin-left: 12px;
+            background: #e2e8f0;
+            color: #475569;
+            font-size: 1.2rem;
+            padding: 2px 12px;
+            border-radius: 30px;
+            font-weight: 500;
+        }
+
+        /* 网格布局：两列，适合手指点击 */
+        .links-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        /* 单个链接卡片 — 巨大点击区域，大字体 */
+        .link-card {
+            background: white;
+            border-radius: 24px;
+            padding: 18px 8px 16px 16px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+            transition: all 0.1s ease;
+            border: 1px solid rgba(0,0,0,0.02);
+            display: flex;
+            align-items: center;
+            min-height: 88px;           /* 保证足够高度 */
+            text-decoration: none;
+            color: #0f172a;
+            -webkit-tap-highlight-color: rgba(59, 130, 246, 0.2);
+        }
+
+        /* 按下状态反馈 */
+        .link-card:active {
+            background: #f0f4fe;
+            transform: scale(0.98);
+            border-color: #3b82f6;
+        }
+
+        /* 图标区域 (emoji 作为简单图标) */
+        .card-icon {
+            font-size: 2.4rem;          /* 约38px，图标大 */
+            margin-right: 14px;
+            min-width: 48px;
+            text-align: center;
+            line-height: 1;
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1));
+        }
+
+        /* 文字容器 */
+        .card-text {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        /* 网站名称：巨大且醒目的字体 */
+        .site-name {
+            font-size: 1.8rem;           /* 约29px */
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 4px;
+            word-break: break-word;
+        }
+
+        /* 简短描述 / 域名 (辅助信息，仍然够大) */
+        .site-desc {
+            font-size: 1.3rem;           /* 约21px */
+            color: #64748b;
+            font-weight: 400;
+            line-height: 1.3;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* 小箭头符号 */
+        .arrow {
+            margin-left: 4px;
+            font-size: 1.4rem;
+            color: #3b82f6;
+            font-weight: 500;
+        }
+
+        /* 单列特色卡片（比如额外添加） */
+        .special-card {
+            background: linear-gradient(145deg, #ffffff, #f8fafc);
+            border-radius: 28px;
+            margin-top: 16px;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid #e2e8f0;
+            text-decoration: none;
+            color: #0f172a;
+        }
+        .special-card .left {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .special-card .label {
+            font-size: 1.4rem;
+            color: #475569;
+            letter-spacing: 0.3px;
+        }
+        .special-card .big-link {
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .special-card .right-arrow {
+            font-size: 3rem;
+            color: #3b82f6;
+            opacity: 0.9;
+        }
+
+        /* 脚注 */
+        .footer-note {
+            margin-top: 32px;
+            text-align: center;
+            font-size: 1.4rem;
+            color: #94a3b8;
+            border-top: 1px solid #dee2e9;
+            padding-top: 24px;
+        }
+
+        /* 让所有文字、间距在极小屏幕（<=375）也舒服 */
+        @media (max-width: 380px) {
+            .site-name {
+                font-size: 1.6rem;
+            }
+            .card-icon {
+                font-size: 2.2rem;
+                margin-right: 10px;
+            }
+            .link-card {
+                padding: 14px 6px 12px 12px;
+            }
+        }
+
+        /* 深色模式适配 (可选，提升夜间体验) */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #121826;
+            }
+            .page-title {
+                color: #e9edf2;
+            }
+            .section-header h2 {
+                color: #cbd5e1;
+                border-left-color: #5699ff;
+            }
+            .link-card {
+                background: #1e2735;
+                border-color: #2d3748;
+                color: #f1f5f9;
+                box-shadow: 0 8px 12px rgba(0,0,0,0.6);
+            }
+            .link-card:active {
+                background: #2a3442;
+            }
+            .site-desc {
+                color: #9aa9bb;
+            }
+            .badge {
+                background: #334155;
+                color: #cbd5e1;
+            }
+            .special-card {
+                background: #1e2735;
+                border-color: #3a4556;
+                color: #f1f5f9;
+            }
+            .special-card .label {
+                color: #a7b7cc;
+            }
+            .footer-note {
+                color: #59687d;
+                border-top-color: #2b3546;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 标题区域，字体超大 -->
+        <div class="page-title">
+            🌐 常用直达
+            <span>移动版</span>
+        </div>
+
+        <!-- 分类1：热门社交 / 生活 -->
+        <div class="section">
+            <div class="section-header">
+                <h2>社交·生活</h2>
+                <div class="badge">高频</div>
+            </div>
+            <div class="links-grid">
+                <!-- 微信 没有官方外链，用官网代替；或者推荐下载页，但保持常用习惯 -->
+                <a href="https://weixin.qq.com/" class="link-card" target="_blank" rel="noopener noreferrer">
+                    <div class="card-icon">💬</div>
+                    <div class="card-text">
+                        <div class="site-name">微信</div>
+                        <div class="site-desc">weixin.qq.com <span class="arrow">↗</span></div>
+                    </div>
+                </a>
+                <!-- 微博 -->
+                <a href="https://m.weibo.cn/" class="link-card" target="_blank" rel="noopener noreferrer">
+                    <div class="card-icon">📱</div>
+                    <div class="card-text">
+                        <div class="site-name">微博</div>
+                        <div class="site-desc">移动端 <span class="arrow">↗</span></div>
+                    </div>
+                </a>
+                <!-- 小红书 -->
+                <a href="https://www.xiaohongshu.com/" class="link-card" target="_blank" rel="noopener noreferrer">
+                    <div class="card-icon">📕</div>
+                    <div class="card-text">
+                        <div class="site-name">小红书</div>
+                        <div class="site-desc">xiaohongshu.com <span class="arrow">↗</span></div>
+                    </div>
+                </a>
+                <!-- 知乎 -->
+                <a href="https://www.zhihu.com/" class="link-card" target="_blank" rel="noopener noreferrer">
+                    <div class="card-icon">❓</div>
+                    <div class="card-text">
+                        <div class="site-name">知乎</div>
+                        <div class="site-desc">zhihu.com <span class="arrow">↗</span></div>
+                    </div>
+                </a>
+                <!-- 豆瓣 -->
+                <a href="https://www.douban.com/" class="link-card" target="_blank" rel="noopener noreferrer">
+                    <div class="card-icon">🎬</div>
+                    <div class="card-text">
+                        <div class="site-name">豆瓣</div>
+                        <div class="site-desc">douban.com <span class="arrow">↗</span></div>
+                    </div>
+                </a>
+                <!-- QQ 邮箱/官网 通常用qq.com -->
+                <a href="https://mail.qq.com/" class="link-card" target="_blank" rel="noopener noreferrer">
+                    <div class="card-icon">📧</div>
+                    <div class="card-text">
+                        <div class="site-name">QQ邮箱</div>
+                        <div class="site-desc">mail.qq.com <span class="arrow">↗</span></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- 分类2：视频·娱乐 -->
+        <div class="section">
+            <div class="section-header">
+                <h2>影音·娱乐</h2>
+                <div class="badge">大屏版</div>
+            </div>
+            <div class="links-grid">
+                <!-- B站 -->
+                <a href="https://m.bilibili.com/" class="link-card" target="_blank" rel="noopener noreferrer">
+                    <div class="card-icon">📺</div>
+                    <div class="card-text">
+                        <div class="site-name">B站</div>
+                        <div class="site-desc">bilibili.com <span class="arrow">↗</span></div>
+                    </div>
+                </a>
+                <!-- 抖音 (抖音官网一般是 douyin.com) -->
+                <a href="https://www.douyin.com/" class="link-card" target="_blank" rel="noopener noreferrer">
+                    <div class="card-icon">🎵</div>
+                    <div class="card-text">
+                        <div class="site-name">抖音</div>
+                        <div class="site-desc">douyin.com <span class="arrow">↗</span></div>
+                    </div>
+                </a>
+                <!-- 快手 -->
+                <a href="https://www.kuaishou.com/" class="link-card" target="_blank" rel="noopener noreferrer">
+                    <div class="card-icon">📹</div>
+                    <div class="card-text">
+                        <div class="site-name">快手</div>
+                        <div class="site-desc">kuaishou.com <span class="arrow">↗</span></div>
+                    </div>
+                </a>
+                <!-- 腾讯视频 -->
+                <a href="https://v.qq.com/" class="link-card" target="_blank" rel="noopener noreferrer">
+                    <div class="card-icon">🎥</div>
+                    <div class="card-text">
+                        <div class="site-name">腾讯视频</div>
+                        <div class="site-desc">v.qq.com <span class="arrow">↗</span></div>
+                    </div>
+                </a>
+                <!-- 优酷 -->
+                <a href="https://www.youku.com/" class="link-card" target="_blank" rel="noopener noreferrer">
+                    <div class="card-icon">▶️</div>
+                    <div class="card-text">
+                        <div class="site-name">优酷</div>
+                        <div class="site-desc">youku.com <span class="arrow">↗</span></div>
+                    </div>
+                </a>
+                <!-- 网易云音乐 -->
+                <a href="https://music.163.com/" class="link-card" target="_blank" rel="noopener noreferrer">
+                    <div class="card-icon">🎧</div>
+                    <div class="card-text">
+                        <div class="site-name">网易云音乐</div>
+                        <div class="site-desc">music.163.com <span class="arrow">↗</span></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- 分类3：资讯·工具 -->
+        <div class="section">
+            <div class="section-header">
+                <h2>资讯·工具</h2>
+                <div class="badge">实用</div>
+            </div>
+            <div class="links-grid">
+                <a href="https://www.baidu.com/" class="link-card" target="_blank" rel="noopener noreferrer">
+                    <div class="card-icon">🔍</div>
+                    <div class="card-text">
+                        <div class="site-name">百度</div>
+                        <div class="site-desc">baidu.com <span class="arrow">↗</span></div>
+                    </div>
+                </a>
+                <a href="https://www.google.com/" class="link-card" target="_blank" rel="noopener noreferrer">
+                    <div class="card-icon">🌐</div>
+                    <div class="card-text">
+                        <div class="site-name">Google</div>
+                        <div class="site-desc">google.com <span class="arrow">↗</span></div>
+                    </div>
+                </a>
+                <a href="https://github.com/" class="link-card" target="_blank" rel="noopener noreferrer">
+                    <div class="card-icon">🐙</div>
+                    <div class="card-text">
+                        <div class="site-name">GitHub</div>
+                        <div class="site-desc">github.com <span class="arrow">↗</span></div>
+                    </div>
+                </a>
+                <a href="https://stackoverflow.com/" class="link-card" target="_blank" rel="noopener noreferrer">
+                    <div class="card-icon">📚</div>
+                    <div class="card-text">
+                        <div class="site-name">Stack Overflow</div>
+                        <div class="site-desc">stackoverflow.com <span class="arrow">↗</span></div>
+                    </div>
+                </a>
+                <a href="https://translate.google.com/" class="link-card" target="_blank" rel="noopener noreferrer">
+                    <div class="card-icon">🌍</div>
+                    <div class="card-text">
+                        <div class="site-name">Google翻译</div>
+                        <div class="site-desc">translate.google.com <span class="arrow">↗</span></div>
+                    </div>
+                </a>
+                <a href="https://www.amazon.cn/" class="link-card" target="_blank" rel="noopener noreferrer">
+                    <div class="card-icon">📦</div>
+                    <div class="card-text">
+                        <div class="site-name">亚马逊</div>
+                        <div class="site-desc">amazon.cn <span class="arrow">↗</span></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- 一个额外的超大链接卡片 (不采用两列，单独突出) -->
+        <a href="https://www.bing.com/" class="special-card" target="_blank" rel="noopener noreferrer">
+            <div class="left">
+                <span class="label">AI 搜索 · 新体验</span>
+                <span class="big-link">Microsoft Bing</span>
+                <span class="site-desc" style="font-size:1.4rem; margin-top:4px;">bing.com 每日美图</span>
+            </div>
+            <div class="right-arrow">➡️</div>
+        </a>
+
+        <!-- 可自行添加更多，保持简洁；脚注说明 -->
+        <div class="footer-note">
+            👆 大按钮 · 轻轻一点 · 立即跳转
+        </div>
+    </div>
+</body>
+</html>
